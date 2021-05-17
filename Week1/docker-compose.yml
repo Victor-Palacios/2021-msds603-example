@@ -1,3 +1,4 @@
+version: "3"
 services:
   web:
     image: dwoodbridge/weather-checking
@@ -7,12 +8,14 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - API_KEY=${API_KEY}
+    #network_mode: bridge
     container_name: web
     networks:
       - default
       - week1_network
   cron:
     image: dwoodbridge/cron
+    #network_mode: bridge
     container_name: cron
     depends_on:
       - web
@@ -21,8 +24,7 @@ services:
     networks:
       - default
       - week1_network
-
 networks:
    week1_network:
     external: false
-    name: week1_network
+    #name: week1_network
