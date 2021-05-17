@@ -10,3 +10,6 @@ docker build -t cron-app cron
 #docker run --name cron-app cron-app
 docker tag cron-app dwoodbridge/cron-app
 docker push dwoodbridge/cron-app
+
+# run docker compose which creates a network between cron-app and weather-app
+docker-compose --env-file .env up
