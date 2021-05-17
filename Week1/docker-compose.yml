@@ -1,6 +1,6 @@
 services:
   web:
-    image: dwoodbridge/weather-app
+    image: dwoodbridge/weather-checking
     ports:
       - "80:80"
     environment:
@@ -12,7 +12,7 @@ services:
       - default
       - week1_network
   cron:
-    image: dwoodbridge/cron-app
+    image: dwoodbridge/cron
     container_name: cron
     depends_on:
       - web
