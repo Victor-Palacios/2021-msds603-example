@@ -1,10 +1,10 @@
 FROM python:3.7-alpine
+RUN apk add git
 
-RUN git clone https://github.com/dianewoodbridge/2021-msds603-example
+RUN git clone https://github.com/dianewoodbridge/2021-msds603-example /2021-msds603-example
+WORKDIR /2021-msds603-example/Week1/weather_checking
 
-COPY 2021-msds603-example /2021-msds603-example
-WORKDIR /2021-msds603-example/weather_checking
-
+RUN ls
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
