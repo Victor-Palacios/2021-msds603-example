@@ -78,5 +78,5 @@ def calculate():
 if __name__ == '__main__':
     application.jinja_env.auto_reload = True
     application.config['TEMPLATES_AUTO_RELOAD'] = True
-    application.debug = True
+    #application.debug = True
     application.run(host ='0.0.0.0', port = 80, debug = True)
