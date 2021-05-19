@@ -17,7 +17,7 @@ def read_s3_obj(bucket_name, output_file):
     try:
         session = boto3.Session(
             aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-            aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY']
+            aws_secret_access_key=os.environ['AWS_ACCESS_KEY_ID']
         )
         s3 = session.resource('s3')
         obj = s3.Object(bucket_name, output_file)
@@ -25,6 +25,17 @@ def read_s3_obj(bucket_name, output_file):
         return body
     except KeyError:
         return ""
+
+
+def retreive_web_data():
+    api_key = os.environ['API_KEY']
+    url = f"http://api.openweathermap.org/data/2.5/weather?appid={api_key}" \
+          f"&zip={zip},us&units=imperial"
+    response = requests.get(url)
+    x = response.json()
+    main = x['weather'][0]['main']
+    temp = x['main']['temp']
+    return main, temp
 
 
 @application.route('/', methods=['GET', 'POST'])
@@ -38,14 +49,8 @@ def index():
 
 @application.route('/calculate', methods=['GET', 'POST'])
 def calculate():
-    """ Read Google Distance API """
-    api_key = os.environ['API_KEY']
-    url = f"http://api.openweathermap.org/data/2.5/weather?appid={api_key}" \
-          f"&zip={zip},us&units=imperial"
-    response = requests.get(url)
-    x = response.json()
-    main = x['weather'][0]['main']
-    temp = x['main']['temp']
+    """ Read OpenWeatherMap API"""
+    main, temp = retreive_web_data()
 
     if (main in ['Clear', 'Clouds'] and 60 < temp < 85):
         msg = "Go for a walk"
