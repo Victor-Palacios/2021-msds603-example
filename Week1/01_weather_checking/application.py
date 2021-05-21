@@ -17,7 +17,7 @@ def read_s3_obj(bucket_name, output_file):
     try:
         session = boto3.Session(
             aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-            aws_secret_access_key=os.environ['AWS_ACCESS_KEY_ID']
+            aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY']
         )
         s3 = session.resource('s3')
         obj = s3.Object(bucket_name, output_file)
@@ -57,8 +57,7 @@ def calculate():
     else:
         msg = "Stay home"
     prev_reading = read_s3_obj(bucket_name, output_file)
-    print(prev_reading)
-
+    
     body = "{}\t{}\t{}\t{}\t{}\n".format(msg,
                                          datetime.datetime.now(),
                                          main,

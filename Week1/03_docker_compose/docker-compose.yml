@@ -1,23 +1,23 @@
 version: "3"
 services:
   web:
-    image: weather-checking
-    #image: dwoodbridge/weather-checking
+    build:
+      context: ../01_weather_checking
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - API_KEY=${API_KEY}
-    #network_mode: bridge
     container_name: web
     networks:
       - default
       - week1_network
   cron:
-    image: cron
-    #image: dwoodbridge/cron
-    #network_mode: bridge
+    build:
+      context: ../02_cron
+      dockerfile: Dockerfile
     container_name: cron
     depends_on:
       - web
@@ -26,6 +26,6 @@ services:
     networks:
       - default
       - week1_network
+
 networks:
    week1_network:
-    #external: false
