@@ -1,9 +1,7 @@
 version: "3"
 services:
   web:
-    build:
-      context: ../weather_checking
-      dockerfile: Dockerfile
+    image: dwoodbridge/weather_checking
     ports:
       - "80:80"
     environment:
@@ -15,9 +13,7 @@ services:
       - default
       - week1_network
   cron:
-    build:
-      context: ../cron
-      dockerfile: Dockerfile
+    image: dwoodbridge/cron
     container_name: cron
     depends_on:
       - web
