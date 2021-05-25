@@ -1,5 +1,1 @@
-#* * * * * curl localhost/calculate
-# The below only works on mac.
-#* * * * * curl docker.for.mac.localhost/calculate >> /var/log/cron.log 2>&1
-* * * * * curl web/calculate >> /var/log/cron.log 2>&1
-#
+* * * * * curl weather_checking/calculate

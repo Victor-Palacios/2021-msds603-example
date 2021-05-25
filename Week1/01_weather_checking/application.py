@@ -58,7 +58,7 @@ def calculate():
         msg = "Stay home"
     prev_reading = read_s3_obj(bucket_name, output_file)
     
-    body = "{}\t{}\t{}\t{}\t{}\n".format(msg,
+    body = "{}\t{}\t{}\t{}\t{}\n\n".format(msg,
                                          datetime.datetime.now(),
                                          main,
                                          temp,
