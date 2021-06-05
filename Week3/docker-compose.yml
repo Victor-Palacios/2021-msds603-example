@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web:
+    build:
+      context: login_step006_logout
+      dockerfile: Dockerfile
+    ports:
+      - "80:5000"
