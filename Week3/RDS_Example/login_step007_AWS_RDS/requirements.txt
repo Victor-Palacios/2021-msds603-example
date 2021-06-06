@@ -1,0 +1,9 @@
+awsebcli
+boto3
+flask-login
+flask-sqlalchemy
+flask-wtf
+psycopg2
+pytest
+python-dotenv
+
